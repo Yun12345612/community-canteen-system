@@ -1,0 +1,1 @@
+import{r}from"./request.BX-2e-eP.js";function e(e,t){return r({url:"/api/recommend/user",method:"get",params:{userId:e,topN:t}})}function t(e,t){return r({url:"/api/recommend/related",method:"get",params:{dishId:e,topN:t}})}function a(e,t){return r({url:"/api/recommend/hybrid",method:"get",params:{userId:e,topN:t}})}export{e as a,t as b,a as g};

@@ -1,0 +1,1 @@
+import{r}from"./request.BX-2e-eP.js";const e=e=>r({url:"/user/order/submit",method:"POST",data:e}),s=e=>r({url:"/user/order/list",method:"get",params:{userId:e}}),a=e=>r({url:"/user/order/detail",method:"get",params:{orderId:e}}),t=e=>r({url:"/user/order/mockPay",method:"POST",data:e});export{a,s as g,t as m,e as s};

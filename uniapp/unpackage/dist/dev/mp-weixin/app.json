@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/dish/list",
+    "pages/dish/detail",
+    "pages/order/list",
+    "pages/mine/mine",
+    "pages/cart/cart",
+    "pages/order/confirm",
+    "pages/order/pay-result",
+    "pages/order/evaluation",
+    "pages/order/dish-evaluation",
+    "pages/evaluation/list",
+    "pages/evaluation/debug"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "社区食堂",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

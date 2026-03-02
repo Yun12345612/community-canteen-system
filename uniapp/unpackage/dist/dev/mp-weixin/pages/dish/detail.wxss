@@ -1,0 +1,215 @@
+
+/* --- 全局容器 --- */
+.dish-detail-container.data-v-de90b20a {
+  padding-bottom: 40rpx;
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* --- 基础信息卡片 --- */
+.dish-base-info.data-v-de90b20a {
+  background: #ffffff;
+  padding: 0;
+  border-radius: 0 0 24rpx 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.03);
+  margin-bottom: 24rpx;
+  overflow: hidden;
+}
+.dish-big-img.data-v-de90b20a {
+  width: 100%;
+  height: 480rpx;
+  border-radius: 0;
+  background-color: #f1f5f9;
+  display: block;
+}
+.dish-base-content.data-v-de90b20a {
+  padding: 24rpx 24rpx 30rpx 24rpx;
+}
+.dish-title.data-v-de90b20a {
+  font-size: 40rpx;
+  color: #1e293b;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12rpx;
+  line-height: 1.3;
+}
+.dish-price.data-v-de90b20a {
+  font-size: 42rpx;
+  color: #ff5000;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 16rpx;
+  font-family: DIN, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.dish-price.data-v-de90b20a::before {
+  content: '¥';
+  font-size: 28rpx;
+  margin-right: 4rpx;
+  font-weight: 600;
+}
+.dish-desc.data-v-de90b20a {
+  font-size: 28rpx;
+  color: #64748b;
+  line-height: 1.8;
+  display: block;
+  margin-bottom: 30rpx;
+  background: #f8fafc;
+  padding: 16rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #e2e8f0;
+}
+
+/* --- 操作按钮区域 --- */
+.action-btns.data-v-de90b20a {
+  display: flex;
+  gap: 20rpx;
+}
+.add-cart-btn.data-v-de90b20a {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  background: linear-gradient(135deg, #07c160 0%, #02b454 100%);
+  color: #fff;
+  border: none;
+  border-radius: 44rpx;
+  box-shadow: 0 8rpx 24rpx rgba(7, 193, 96, 0.35);
+}
+.add-cart-btn.data-v-de90b20a:active {
+  transform: scale(0.96);
+  opacity: 1;
+}
+.btn-hover.data-v-de90b20a {
+  opacity: 1;
+}
+
+/* --- 状态提示 --- */
+.stock-tips.data-v-de90b20a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88rpx;
+  font-size: 30rpx;
+  color: #94a3b8;
+  text-align: center;
+  background: #f1f5f9;
+  border-radius: 44rpx;
+  font-weight: 500;
+  border: 1rpx dashed #cbd5e1;
+}
+
+/* --- 搭配推荐区域 --- */
+.related-recommend.data-v-de90b20a {
+  background: #ffffff;
+  margin: 0 24rpx 24rpx 24rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.03);
+  min-height: 240rpx;
+}
+.related-title.data-v-de90b20a {
+  font-size: 34rpx;
+  color: #1e293b;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 24rpx;
+  position: relative;
+  padding-left: 16rpx;
+}
+.related-title.data-v-de90b20a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 32rpx;
+  background: #07c160;
+  border-radius: 4rpx;
+}
+.related-scroll.data-v-de90b20a {
+  white-space: nowrap;
+  padding-bottom: 10rpx;
+}
+.related-list.data-v-de90b20a {
+  display: inline-flex;
+  gap: 20rpx;
+}
+.related-item.data-v-de90b20a {
+  width: 180rpx;
+  text-align: left;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 1rpx solid #f1f5f9;
+  transition: transform 0.2s;
+}
+.related-item.data-v-de90b20a:active {
+  transform: scale(0.95);
+}
+.related-img.data-v-de90b20a {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 16rpx 16rpx 0 0;
+  background-color: #f1f5f9;
+  display: block;
+}
+.related-name.data-v-de90b20a {
+  font-size: 26rpx;
+  color: #334155;
+  font-weight: 600;
+  display: block;
+  margin: 12rpx 12rpx 8rpx 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.related-price.data-v-de90b20a {
+  font-size: 28rpx;
+  color: #ff5000;
+  font-weight: 700;
+  display: block;
+  margin: 0 12rpx 12rpx 12rpx;
+  font-family: DIN, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.related-price.data-v-de90b20a::before {
+  content: '¥';
+  font-size: 20rpx;
+  margin-right: 2rpx;
+}
+
+/* --- 空状态 --- */
+.related-empty.data-v-de90b20a {
+  background: #ffffff;
+  margin: 0 24rpx 24rpx 24rpx;
+  padding: 60rpx 24rpx;
+  text-align: center;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.03);
+}
+.empty-container.data-v-de90b20a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+.empty-text.data-v-de90b20a {
+  font-size: 30rpx;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* 动画效果 */
+@keyframes fadeIn-de90b20a {
+from { opacity: 0; transform: translateY(10rpx);
+}
+to { opacity: 1; transform: translateY(0);
+}
+}
+.dish-base-info.data-v-de90b20a, .related-recommend.data-v-de90b20a {
+  animation: fadeIn-de90b20a 0.4s ease-out;
+}

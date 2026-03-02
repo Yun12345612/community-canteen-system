@@ -1,0 +1,1 @@
+import{g as r}from"./index-BFbgI0Bn.js";import{r as e}from"./request.BX-2e-eP.js";function u(u){return e({url:`/user/evaluation/can-evaluate/${u}`,method:"GET",params:{userId:r("userId")}})}function s(u){return e({url:"/user/evaluation/submit",method:"POST",data:{userId:r("userId"),...u}})}export{u as c,s};

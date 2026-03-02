@@ -1,0 +1,135 @@
+
+.debug-page.data-v-f9702387 {
+  padding: 20rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+.header.data-v-f9702387 {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.title.data-v-f9702387 {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.section.data-v-f9702387 {
+  background: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.section-title.data-v-f9702387 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.section-content.data-v-f9702387 {
+  font-size: 26rpx;
+  color: #666;
+}
+.btn.data-v-f9702387 {
+  background: #07c160;
+  color: #fff;
+  border: none;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+.loading-text.data-v-f9702387 {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+}
+.json-box.data-v-f9702387 {
+  background: #f5f5f5;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  max-height: 600rpx;
+  overflow-y: auto;
+}
+.json-text.data-v-f9702387 {
+  font-size: 22rpx;
+  color: #333;
+  font-family: monospace;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+.eval-item.data-v-f9702387 {
+  background: #f9f9f9;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #e0e0e0;
+}
+.eval-row.data-v-f9702387 {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.label.data-v-f9702387 {
+  font-size: 24rpx;
+  color: #666;
+  width: 200rpx;
+}
+.value.data-v-f9702387 {
+  font-size: 24rpx;
+  color: #333;
+  flex: 1;
+}
+.value.highlight.data-v-f9702387 {
+  color: #07c160;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.dish-list.data-v-f9702387 {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+}
+.dish-title.data-v-f9702387 {
+  font-size: 26rpx;
+  color: #07c160;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15rpx;
+}
+.dish-item.data-v-f9702387 {
+  background: #fff;
+  padding: 15rpx;
+  margin-bottom: 10rpx;
+  border-radius: 8rpx;
+  border-left: 4rpx solid #07c160;
+}
+.dish-info.data-v-f9702387 {
+  font-size: 24rpx;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8rpx;
+}
+.dish-content.data-v-f9702387 {
+  font-size: 22rpx;
+  color: #666;
+  display: block;
+}
+.no-dish.data-v-f9702387 {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff3cd;
+  border-radius: 8rpx;
+  text-align: center;
+}
+.no-dish-text.data-v-f9702387 {
+  font-size: 24rpx;
+  color: #856404;
+}
+.error-text.data-v-f9702387 {
+  font-size: 26rpx;
+  color: #f56c6c;
+  display: block;
+}

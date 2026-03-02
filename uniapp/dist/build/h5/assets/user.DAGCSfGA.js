@@ -1,0 +1,1 @@
+import{r}from"./request.BX-2e-eP.js";function e(e){return r({url:"/user/h5Login",method:"POST",params:{deviceId:e}})}function t(e){return r({url:"/user/updateUserInfo",method:"POST",data:e})}export{e as h,t as u};

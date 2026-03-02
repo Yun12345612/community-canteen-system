@@ -1,0 +1,47 @@
+
+/* 固定底部，优先级拉满 */
+.tabbar-wrapper.data-v-51c48e3c {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  height: 50px !important;
+  background: #fff !important;
+  border-top: 1px solid #eee !important;
+}
+
+/* 导航栏容器 */
+.tabbar.data-v-51c48e3c {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* 单个导航项 */
+.tab-item.data-v-51c48e3c {
+  flex: 1;
+  text-align: center;
+}
+
+/* 图标 */
+.icon.data-v-51c48e3c {
+  font-size: 36rpx;
+  display: block;
+  margin-top: 8rpx;
+  color: #666;
+}
+
+/* 文字 */
+.text.data-v-51c48e3c {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 4rpx;
+}
+
+/* 选中状态（和uni-tabbar的active-color一致） */
+.tab-item.active .icon.data-v-51c48e3c,
+.tab-item.active .text.data-v-51c48e3c {
+  color: #ff6700 !important;
+}

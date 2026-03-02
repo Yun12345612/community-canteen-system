@@ -1,0 +1,1 @@
+import{r as t}from"./request.BX-2e-eP.js";const s={getDishList:()=>t({url:"/api/dish/list",method:"GET"}),getDishDetail:s=>t({url:"/api/dish/detail",method:"GET",params:{dishId:s}}),getMerchantDishList:()=>t({url:"/merchant/dish/list",method:"GET"})},{getDishDetail:i}=s;export{s as d,i as g};

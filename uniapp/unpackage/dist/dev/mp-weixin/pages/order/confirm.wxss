@@ -1,0 +1,252 @@
+
+.confirm-container.data-v-324e7894 {
+  padding: 20rpx;
+  background: #f7f8fa;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+}
+.card-item.data-v-324e7894 {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+.card-title.data-v-324e7894 {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  display: block;
+}
+
+/* 收货信息样式 */
+.address-form.data-v-324e7894 {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.input-item.data-v-324e7894 {
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+.input-item.data-v-324e7894:disabled {
+  background: #f0f0f0;
+  color: #999;
+}
+.radio-group.data-v-324e7894 {
+  display: flex;
+  gap: 40rpx;
+}
+.radio-group.data-v-324e7894:disabled {
+  opacity: 0.6;
+}
+.radio-label.data-v-324e7894 {
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.remark-area.data-v-324e7894 {
+  width: 100%;
+  height: 140rpx;
+  background: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  border: none;
+}
+.remark-area.data-v-324e7894:disabled {
+  background: #f0f0f0;
+  color: #999;
+}
+.goods-list.data-v-324e7894 {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+.goods-item.data-v-324e7894 {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #333;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.goods-item.data-v-324e7894:last-child {
+  border-bottom: none;
+}
+.pay-bar.data-v-324e7894 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.1);
+}
+.total-price.data-v-324e7894 {
+  font-size: 32rpx;
+  color: #ff6700;
+  font-weight: bold;
+}
+.pay-btn.data-v-324e7894 {
+  width: 220rpx;
+  height: 70rpx;
+  background: #07c160;
+  color: #fff;
+  border: none;
+  border-radius: 35rpx;
+}
+.btn-hover.data-v-324e7894 {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+/* 微信风格支付弹窗样式 */
+.pay-mask.data-v-324e7894 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  -webkit-backdrop-filter: blur(2rpx);
+          backdrop-filter: blur(2rpx); /* 毛玻璃效果 */
+}
+.pay-modal.data-v-324e7894 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx 32rpx 0;
+  z-index: 1000;
+  transform: translateY(100%); /* 默认隐藏在底部 */
+  box-sizing: border-box;
+}
+
+/* 弹窗头部 */
+.pay-header.data-v-324e7894 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 32rpx;
+}
+.pay-title.data-v-324e7894 {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+.pay-close.data-v-324e7894 {
+  position: absolute;
+  right: 0;
+  font-size: 36rpx;
+  color: #86868b;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 金额区域 */
+.pay-amount-wrap.data-v-324e7894 {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+.pay-amount-label.data-v-324e7894 {
+  font-size: 28rpx;
+  color: #86868b;
+  display: block;
+  margin-bottom: 16rpx;
+}
+.pay-amount.data-v-324e7894 {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: 2rpx;
+}
+
+/* 密码输入区域 */
+.pwd-container.data-v-324e7894 {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+.pwd-tip.data-v-324e7894 {
+  font-size: 28rpx;
+  color: #1d1d1f;
+  display: block;
+  margin-bottom: 24rpx;
+}
+.pwd-box.data-v-324e7894 {
+  display: flex;
+  justify-content: center;
+  gap: 24rpx;
+}
+.pwd-item.data-v-324e7894 {
+  width: 64rpx;
+  height: 64rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pwd-dot.data-v-324e7894 {
+  font-size: 40rpx;
+  color: #1d1d1f;
+  letter-spacing: 8rpx;
+}
+
+/* 数字键盘（微信官方风格） */
+.keyboard.data-v-324e7894 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rpx;
+  background-color: #e5e5e5;
+  border-top: 1rpx solid #e5e5e5;
+  margin: 0 -32rpx; /* 铺满弹窗宽度 */
+}
+.key.data-v-324e7894 {
+  background: #fff;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38rpx;
+  color: #1d1d1f;
+  font-weight: 500;
+}
+
+/* 空按键（对应微信键盘左下角空白） */
+.empty-key.data-v-324e7894 {
+  background: #f5f5f5;
+}
+
+/* 删除键 */
+.del-key.data-v-324e7894 {
+  background: #f5f5f5;
+}
+.del-icon.data-v-324e7894 {
+  font-size: 32rpx;
+  color: #86868b;
+}
+
+/* 按键点击效果 */
+.key.data-v-324e7894:active {
+  background-color: #f0f0f0;
+}
