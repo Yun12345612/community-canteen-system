@@ -1,0 +1,79 @@
+server:
+  port: 8080
+  # 解决中文乱码
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: community-canteen-order
+  # 数据库数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/canteen_order_system?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 123456
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
+      enabled: true
+  # Redis配置
+  redis:
+    host: 47.93.86.99
+    port: 6379
+    password: 123456
+    database: 7
+
+# MyBatis-Plus 配置
+mybatis-plus:
+  # 别名扫描包：对应你的TUser实体类路径
+  type-aliases-package: com.canteen.communitycanteenosystem.entity
+  # Mapper XML文件路径
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 开启驼峰命名转换（数据库t_user -> 实体类TUser）
+    map-underscore-to-camel-case: true
+    # 打印SQL日志，开发调试使用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 自定义配置
+file:
+  upload:
+    path: D:/uploads/
+  access:
+    url-prefix: http://127.0.0.1:8080/uploads/
+
+# 微信小程序配置
+wechat:
+  mini:
+    app-id: wx23e5e5eb16b6c467
+    app-secret: 148a760991bcc2100b8db3bf0cbff0bc
+    code2session-url: https://api.weixin.qq.com/sns/jscode2session
+
+# JWT配置（拆分商家端 + 小程序用户端）
+jwt:
+  # 商家端配置
+  merchant:
+    secret: xF35kP9sZ2bN7cV8bJ6hG5fD4sA3qW2eR1tY7uI8oP0  # 32位以上随机密钥
+    expire: 7200000  # 商家Token过期时间：2小时（毫秒）
+  # 小程序用户端配置
+  user:
+    secret: aS9dF7gH5jK2lZ8xC7vB6nM4qW1eR3tY5uI7oP0sD6  # 独立密钥，和商家端区分
+    expire: 86400000  # 用户Token过期时间：1天（毫秒，适配小程序登录）
+
+# 日志配置
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
+  level:
+    # Mapper层日志打印SQL
+    com.canteen.communitycanteenosystem.mapper: debug
+    root: info
+
+# 自定义业务配置
+canteen:
+  merchant:
+    # 数据库自增生成的有效商家ID，仅在这里配置一次
+    default-merchant-id: 7

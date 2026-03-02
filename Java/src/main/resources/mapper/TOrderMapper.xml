@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.canteen.communitycanteenosystem.mapper.TOrderMapper">
+    <resultMap id="BaseResultMap" type="com.canteen.communitycanteenosystem.entity.TOrder">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="total_amount" property="totalAmount"/>
+        <result column="dining_type" property="diningType"/>
+        <result column="remarks" property="remarks"/>
+        <result column="pay_status" property="payStatus"/>
+        <result column="order_status" property="orderStatus"/>
+        <result column="pay_time" property="payTime"/>
+        <result column="expected_time" property="expectedTime"/>
+        <result column="actual_complete_time" property="actualCompleteTime"/>
+        <result column="cancel_reason" property="cancelReason"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <!-- 新增：映射 receiver_name/receiver_phone 到 TOrder 实体 -->
+        <result column="receiver_name" property="receiverName"/>
+        <result column="receiver_phone" property="receiverPhone"/>
+    </resultMap>
+
+    <!-- OrderVO结果映射-->
+    <resultMap id="OrderVOResultMap" type="com.canteen.communitycanteenosystem.vo.OrderVO">
+        <!-- 添加id标签，防止结果合并 -->
+        <id column="id" property="order.id"/>
+
+        <!-- 映射TOrder的所有字段到order属性 -->
+        <result column="order_no" property="order.orderNo"/>
+        <result column="user_id" property="order.userId"/>
+        <result column="merchant_id" property="order.merchantId"/>
+        <result column="total_amount" property="order.totalAmount"/>
+        <result column="dining_type" property="order.diningType"/>
+        <result column="remarks" property="order.remarks"/>
+        <result column="pay_status" property="order.payStatus"/>
+        <result column="order_status" property="order.orderStatus"/>
+        <result column="pay_time" property="order.payTime"/>
+        <result column="expected_time" property="order.expectedTime"/>
+        <result column="actual_complete_time" property="order.actualCompleteTime"/>
+        <result column="cancel_reason" property="order.cancelReason"/>
+        <result column="create_time" property="order.createTime"/>
+        <result column="update_time" property="order.updateTime"/>
+        <!-- 新增：映射 receiver_name/receiver_phone 到 order 对象 -->
+        <result column="receiver_name" property="order.receiverName"/>
+        <result column="receiver_phone" property="order.receiverPhone"/>
+
+        <!-- 保留原用户表映射（可选，若不需要可删除） -->
+        <result column="user_name" property="customerName"/>
+        <result column="user_phone" property="customerPhone"/>
+    </resultMap>
+
+    <!-- 商家查询订单 -->
+    <select id="listMerchantOrdersVO" resultMap="OrderVOResultMap">
+        SELECT
+        o.*,
+        u.name AS user_name,
+        u.phone AS user_phone
+        FROM t_order o
+        LEFT JOIN t_user u ON o.user_id = u.id
+        WHERE o.merchant_id = #{merchantId}
+        <if test="isCompleted != null">
+            <choose>
+                <when test="isCompleted">
+                    AND o.order_status = 3
+                </when>
+                <otherwise>
+                    AND o.order_status IN (1, 2)
+                </otherwise>
+            </choose>
+        </if>
+        ORDER BY o.create_time DESC
+    </select>
+
+
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT * FROM t_order WHERE id = #{orderId}
+    </select>
+
+    <update id="updateOrderStatus">
+        UPDATE t_order
+        SET order_status = #{orderStatus},
+        <if test="orderStatus == 3">
+            actual_complete_time = NOW(),
+        </if>
+        <if test="orderStatus == 4 and cancelReason != null and cancelReason != ''">
+            cancel_reason = #{cancelReason},
+        </if>
+        update_time = NOW()
+        WHERE id = #{orderId} AND merchant_id = #{merchantId}
+    </update>
+
+    <select id="countOrderByMerchant" resultType="int">
+        SELECT COUNT(1) FROM t_order WHERE id = #{orderId} AND merchant_id = #{merchantId}
+    </select>
+</mapper>

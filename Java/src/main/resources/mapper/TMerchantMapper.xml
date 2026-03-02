@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.canteen.communitycanteenosystem.mapper.TMerchantMapper">
+    <!-- 通用查询列 -->
+    <sql id="Base_Column_List">
+        id, merchant_name, account, username, password, phone, business_hours,
+        is_holiday, holiday_start, holiday_end, create_time, update_time, is_valid
+    </sql>
+
+    <!-- 结果映射 -->
+    <resultMap id="BaseResultMap" type="com.canteen.communitycanteenosystem.entity.TMerchant">
+        <id column="id" property="id"/>
+        <result column="merchant_name" property="merchantName"/>
+        <result column="account" property="account"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="business_hours" property="businessHours"/>
+        <result column="is_holiday" property="isHoliday"/>
+        <result column="holiday_start" property="holidayStart"/>
+        <result column="holiday_end" property="holidayEnd"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_valid" property="isValid"/>
+    </resultMap>
+
+    <!--更新商家休假设置 -->
+    <update id="updateHolidaySetting">
+        UPDATE t_merchant
+        SET is_holiday = #{isHoliday},
+        <if test="holidayStart != null">holiday_start = #{holidayStart},</if>
+        <if test="holidayEnd != null">holiday_end = #{holidayEnd},</if>
+        update_time = NOW()
+        WHERE id = #{merchantId}
+    </update>
+
+    <!-- 查询商家营业状态-->
+    <select id="selectBusinessStatusById" resultMap="BaseResultMap">
+        SELECT id, is_holiday, holiday_start, holiday_end, is_valid
+        FROM t_merchant
+        WHERE id = #{merchantId}
+    </select>
+    <!--校验商家是否存在（替代外键约束） -->
+    <select id="countMerchantById" resultType="int">
+        SELECT COUNT(1) FROM t_merchant WHERE id = #{id}
+    </select>
+
+    <!-- 多标识登录查询 -->
+    <select id="selectMerchantByLoginKey" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM t_merchant
+        WHERE (account = #{loginKey} OR phone = #{loginKey} OR username = #{loginKey})
+        AND is_valid = 1
+    </select>
+
+    <!-- 注册插入-->
+    <insert id="insertMerchant"
+            parameterType="com.canteen.communitycanteenosystem.entity.TMerchant"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO t_merchant (
+        merchant_name, account, username, password, phone, business_hours,
+        is_holiday, holiday_start, holiday_end, is_valid,
+        create_time, update_time
+        )
+        VALUES (
+        #{merchantName}, #{account}, #{username}, #{password}, #{phone}, #{businessHours},
+        #{isHoliday}, #{holidayStart}, #{holidayEnd}, #{isValid},
+        NOW(), NOW()
+        )
+    </insert>
+</mapper>

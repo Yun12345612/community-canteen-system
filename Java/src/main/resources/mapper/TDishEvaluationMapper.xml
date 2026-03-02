@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.canteen.communitycanteenosystem.mapper.TDishEvaluationMapper">
+
+<resultMap id="BaseResultMap" type="com.canteen.communitycanteenosystem.entity.TDishEvaluation">
+        <id column="id" property="id"/>
+        <result column="evaluation_id" property="evaluationId"/>
+        <result column="order_item_id" property="orderItemId"/>
+        <result column="dish_id" property="dishId"/>
+        <result column="dish_name" property="dishName"/>
+        <result column="user_id" property="userId"/>
+        <result column="score" property="score"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 批量插入菜品评价 -->
+    <insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_dish_evaluation
+        (evaluation_id, order_item_id, dish_id, dish_name, user_id, score, content, create_time, update_time)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.evaluationId}, #{item.orderItemId}, #{item.dishId}, #{item.dishName},
+             #{item.userId}, #{item.score}, #{item.content}, NOW(), NOW())
+        </foreach>
+    </insert>
+
+    <!-- 根据订单评价ID查询菜品评价 -->
+    <select id="selectByEvaluationId" resultMap="BaseResultMap">
+        SELECT
+            id, evaluation_id, order_item_id, dish_id, dish_name,
+            score, content, create_time, update_time
+        FROM t_dish_evaluation
+        WHERE evaluation_id = #{evaluationId}
+        ORDER BY create_time ASC
+    </select>
+
+    <!-- 根据菜品ID统计评价数量 -->
+    <select id="countByDishId" resultType="int">
+        SELECT COUNT(*)
+        FROM t_dish_evaluation
+        WHERE dish_id = #{dishId}
+    </select>
+
+<!-- 根据订单评价ID删除菜品评价 -->
+    <delete id="deleteByEvaluationId">
+        DELETE FROM t_dish_evaluation
+        WHERE evaluation_id = #{evaluationId}
+    </delete>
+
+<!-- 根据菜品ID查询评价列表 -->
+    <select id="selectByDishId" resultMap="BaseResultMap">
+        SELECT
+            id, evaluation_id, order_item_id, dish_id, dish_name, user_id,
+            score, content, create_time, update_time
+        FROM t_dish_evaluation
+        WHERE dish_id = #{dishId}
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 插入单条菜品评价（用于直接评价菜品，无需订单） -->
+    <insert id="insertSingle" parameterType="com.canteen.communitycanteenosystem.entity.TDishEvaluation"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_dish_evaluation
+        (evaluation_id, order_item_id, dish_id, dish_name, user_id, score, content, create_time, update_time)
+        VALUES
+        (#{evaluationId}, #{orderItemId}, #{dishId}, #{dishName}, #{userId}, #{score}, #{content}, NOW(), NOW())
+    </insert>
+
+    <!-- 根据订单ID查询菜品评价 -->
+    <select id="selectByOrderId" resultMap="BaseResultMap">
+        SELECT
+            de.id, de.evaluation_id, de.order_item_id, de.dish_id, de.dish_name, de.user_id,
+            de.score, de.content, de.create_time, de.update_time
+        FROM t_dish_evaluation de
+        INNER JOIN t_evaluation e ON de.evaluation_id = CONVERT(e.id, CHAR)
+        WHERE e.order_id = #{orderId}
+        ORDER BY de.create_time ASC
+    </select>
+
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.canteen.communitycanteenosystem.mapper.TDishMapper">
+    <!-- 通用查询列：所有字段添加菜品表别名d.，消除歧义 -->
+    <sql id="Base_Column_List">
+        d.id, d.dish_name, d.category_id, d.price, d.stock, d.cover_img,
+        d.taste_tag, d.description, d.status, d.create_time, d.update_time
+    </sql>
+
+    <!-- 结果映射：数据库字段 → 实体类字段（驼峰匹配）+ 分类名称映射 -->
+    <resultMap id="BaseResultMap" type="com.canteen.communitycanteenosystem.entity.TDish">
+        <id column="id" property="id"/>
+        <result column="dish_name" property="dishName"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="price" property="price"/>
+        <result column="stock" property="stock"/>
+        <result column="cover_img" property="coverImg"/>
+        <result column="taste_tag" property="tasteTag"/>
+        <result column="description" property="description"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <!-- 分类名称：关联分类表查询的字段 -->
+        <result column="category_name" property="categoryName"/>
+    </resultMap>
+
+    <!-- 添加菜品：默认status=1（上架），数据隔离（merchant_id） -->
+    <insert id="insertDish" parameterType="com.canteen.communitycanteenosystem.entity.TDish"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_dish (
+            merchant_id, dish_name, category_id, price, stock, cover_img,
+            taste_tag, description, status
+        ) VALUES (
+                     #{merchantId}, #{dishName}, #{categoryId}, #{price}, #{stock}, #{coverImg},
+                     #{tasteTag}, #{description}, 1
+                 )
+    </insert>
+
+    <!-- 修改菜品：动态更新（非空字段才更），数据隔离（merchant_id） -->
+    <update id="updateDish" parameterType="com.canteen.communitycanteenosystem.entity.TDish">
+        UPDATE t_dish
+        <set>
+            <if test="dishName != null and dishName != ''">dish_name = #{dishName},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="coverImg != null and coverImg != ''">cover_img = #{coverImg},</if>
+            <if test="tasteTag != null and tasteTag != ''">taste_tag = #{tasteTag},</if>
+            <if test="description != null and description != ''">description = #{description},</if>
+        </set>
+        WHERE id = #{id} AND merchant_id = #{merchantId}
+    </update>
+
+    <!-- 修改上下架状态：数据隔离，仅允许操作自己的菜品 -->
+    <update id="updateDishStatus">
+        UPDATE t_dish
+        SET status = #{status}
+        WHERE id = #{id} AND merchant_id = #{merchantId}
+    </update>
+
+    <!-- 商家查询菜品列表：左关联分类表+字段加别名+分类表商家隔离 -->
+    <select id="selectDishListByMerchantId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>,
+        c.category_name
+        FROM t_dish d
+        LEFT JOIN t_dish_category c
+        ON d.category_id = c.id
+        AND c.merchant_id = #{merchantId}
+        WHERE d.merchant_id = #{merchantId}
+        ORDER BY d.create_time DESC
+    </select>
+
+    <!-- 校验菜品归属：防止跨商家操作 -->
+    <select id="countDishByIdAndMerchantId" resultType="int">
+        SELECT COUNT(1)
+        FROM t_dish
+        WHERE id = #{id} AND merchant_id = #{merchantId}
+    </select>
+
+    <delete id="deleteDish">
+        DELETE FROM t_dish
+        WHERE id = #{id} AND merchant_id = #{merchantId}
+    </delete>
+</mapper>

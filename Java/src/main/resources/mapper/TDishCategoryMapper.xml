@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace：必须对应Mapper接口的全类名 -->
+<mapper namespace="com.canteen.communitycanteenosystem.mapper.TDishCategoryMapper">
+
+    <!-- 通用结果集映射：实体类字段 → 数据库表字段（解决驼峰命名不一致） -->
+    <resultMap id="BaseResultMap" type="com.canteen.communitycanteenosystem.entity.TDishCategory">
+        <id column="id" property="id"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="sort" property="sort"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_valid" property="isValid"/>
+        <result column="merchant_id" property="merchantId"/>
+    </resultMap>
+
+    <!-- 新增分类：使用useGeneratedKeys获取自增主键，keyProperty映射到实体类id -->
+    <insert id="insertCategory" parameterType="com.canteen.communitycanteenosystem.entity.TDishCategory"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_dish_category (category_name, sort, is_valid, merchant_id)
+        VALUES (#{categoryName}, #{sort}, #{isValid}, #{merchantId})
+    </insert>
+
+    <!-- 修改分类：全字段更新，排除主键、创建时间（更新时间由数据库自动维护） -->
+    <update id="updateCategory" parameterType="com.canteen.communitycanteenosystem.entity.TDishCategory">
+        UPDATE t_dish_category
+        SET category_name = #{categoryName},
+            sort = #{sort},
+            is_valid = #{isValid}
+        WHERE id = #{id}
+          AND merchant_id = #{merchantId}
+    </update>
+
+    <!-- 启用/禁用分类：带商家ID校验，防止越权操作 -->
+    <update id="updateCategoryValid">
+        UPDATE t_dish_category
+        SET is_valid = #{isValid}
+        WHERE id = #{id}
+          AND merchant_id = #{merchantId}
+    </update>
+
+    <!-- 根据ID查询分类：带商家ID校验 -->
+    <select id="selectCategoryById" resultMap="BaseResultMap">
+        SELECT * FROM t_dish_category
+        WHERE id = #{id}
+          AND merchant_id = #{merchantId}
+    </select>
+
+    <!-- 查询商家所有有效分类：is_valid=1，按sort升序 -->
+    <select id="selectValidCategoryByMerchantId" resultMap="BaseResultMap">
+        SELECT * FROM t_dish_category
+        WHERE merchant_id = #{merchantId}
+          AND is_valid = 1
+        ORDER BY sort ASC
+    </select>
+
+    <!-- 查询商家所有分类：含启用/禁用，按sort升序 -->
+    <select id="selectAllCategoryByMerchantId" resultMap="BaseResultMap">
+        SELECT * FROM t_dish_category
+        WHERE merchant_id = #{merchantId}
+        ORDER BY sort ASC
+    </select>
+
+</mapper>
